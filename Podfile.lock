@@ -1,0 +1,24 @@
+PODS:
+  - Operations/+CloudKit (2.10.1):
+    - Operations/Standard
+  - Operations/Standard (2.10.1)
+
+DEPENDENCIES:
+  - Operations/+CloudKit (from `https://github.com/leotumwattana/Operations.git`, commit `015dea91bde886907c14965581845958bcbcff23`)
+
+EXTERNAL SOURCES:
+  Operations:
+    :commit: 015dea91bde886907c14965581845958bcbcff23
+    :git: https://github.com/leotumwattana/Operations.git
+
+CHECKOUT OPTIONS:
+  Operations:
+    :commit: 015dea91bde886907c14965581845958bcbcff23
+    :git: https://github.com/leotumwattana/Operations.git
+
+SPEC CHECKSUMS:
+  Operations: 78332636225044f6a1fffc8d5dfc5a744a5cb583
+
+PODFILE CHECKSUM: e83c93c2158e24516acc9cb78caae49ab41cb539
+
+COCOAPODS: 1.0.0
