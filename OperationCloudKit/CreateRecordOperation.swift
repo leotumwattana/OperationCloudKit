@@ -38,14 +38,27 @@ class CreateRecordOperation: GroupOperation {
         }
         
         // Setting this will cause the crash!
-        createRecordOperation.setErrorHandlerForLimitExceeded()
+        //createRecordOperation.setErrorHandlerForLimitExceeded()
+        
+        createRecordOperation.setErrorHandlerForCode(.LimitExceeded) {
+            (operation, error, log, suggested) ->
+            (delay: Delay?, configure: OPRCKOperation<CKModifyRecordsOperation> -> Void)? in
+            
+            let configure = { (rhs: OPRCKOperation<CKModifyRecordsOperation>) in
+                
+                suggested.configure(rhs)
+                
+                rhs.recordsToSave = operation.recordsToSave
+                rhs.recordIDsToDelete = operation.recordIDsToDelete
+            }
+            
+            return (Delay.By(1), configure)
+        }
         
         super.init(operations: [createRecordOperation])
         
         name = "CreateRecordOperation"
         qualityOfService = .UserInitiated
-        
-        log.severity = .Verbose
     }
 }
 
