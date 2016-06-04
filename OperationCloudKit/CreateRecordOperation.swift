@@ -21,15 +21,12 @@ class CreateRecordOperation: GroupOperation {
             return record
         }
         
-        let op = CKModifyRecordsOperation(
-            recordsToSave: records,
-            recordIDsToDelete: nil)
-        
-        op.savePolicy = .ChangedKeys
-        op.qualityOfService = .UserInitiated
-        
-        let createRecordOperation = CloudKitOperation { op }
+        let createRecordOperation = CloudKitOperation { CKModifyRecordsOperation() }
         createRecordOperation.name = "CreateRecordCloudKitOperation"
+        createRecordOperation.savePolicy = .ChangedKeys
+        createRecordOperation.qualityOfService = .UserInitiated
+        createRecordOperation.recordsToSave = records
+        createRecordOperation.recordIDsToDelete = nil
         createRecordOperation.container = CloudKit.container
         createRecordOperation.database = CloudKit.database
         
@@ -38,22 +35,7 @@ class CreateRecordOperation: GroupOperation {
         }
         
         // Setting this will cause the crash!
-        //createRecordOperation.setErrorHandlerForLimitExceeded()
-        
-        createRecordOperation.setErrorHandlerForCode(.LimitExceeded) {
-            (operation, error, log, suggested) ->
-            (delay: Delay?, configure: OPRCKOperation<CKModifyRecordsOperation> -> Void)? in
-            
-            let configure = { (rhs: OPRCKOperation<CKModifyRecordsOperation>) in
-                
-                suggested.configure(rhs)
-                
-                rhs.recordsToSave = operation.recordsToSave
-                rhs.recordIDsToDelete = operation.recordIDsToDelete
-            }
-            
-            return (Delay.By(1), configure)
-        }
+        createRecordOperation.setErrorHandlerForLimitExceeded()
         
         super.init(operations: [createRecordOperation])
         
