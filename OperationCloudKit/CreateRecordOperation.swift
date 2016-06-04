@@ -31,7 +31,9 @@ class CreateRecordOperation: GroupOperation {
         createRecordOperation.database = CloudKit.database
         
         createRecordOperation.setModifyRecordsCompletionBlock { (recordsSaved, recordIdsDeleted) in
-            print("Create Record: \(recordsSaved) Records Deleted: \(recordIdsDeleted)")
+            
+            let recordTitles = recordsSaved?.map { record in record["Title"] }
+            print("Create Record: \(recordTitles)")
         }
         
         // Setting this will cause the crash!
