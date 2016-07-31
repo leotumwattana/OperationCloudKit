@@ -14,15 +14,21 @@ final class CreateZoneOperation: GroupOperation {
     init() {
         
         // Setup CKOperation
-        let modifyRecordZonesOperation = CKModifyRecordZonesOperation(
-            recordZonesToSave: [CloudKit.recordZone],
-            recordZoneIDsToDelete: nil) //[ORCloudKit.zoneID])
+        //let modifyRecordZonesOperation = CKModifyRecordZonesOperation(
+            //recordZonesToSave: [CloudKit.recordZone],
+            //recordZoneIDsToDelete: nil) //[ORCloudKit.zoneID])
         
-        modifyRecordZonesOperation.name = "ModifyRecordZonesOperation"
-        modifyRecordZonesOperation.qualityOfService = .UserInitiated
+        //modifyRecordZonesOperation.name = "ModifyRecordZonesOperation"
+        //modifyRecordZonesOperation.qualityOfService = .UserInitiated
         
         // Create composed operation
-        let createZoneOperation = CloudKitOperation { modifyRecordZonesOperation }
+        let createZoneOperation = CloudKitOperation {
+            CKModifyRecordZonesOperation()
+        }
+        
+        createZoneOperation.recordZonesToSave = [CloudKit.recordZone]
+        createZoneOperation.recordZoneIDsToDelete = nil
+        
         createZoneOperation.name = "CreateZoneOperation"
         createZoneOperation.qualityOfService = .UserInitiated
         

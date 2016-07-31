@@ -36,8 +36,8 @@ class CreateRecordOperation: GroupOperation {
             print("Create Record: \(recordTitles)")
         }
         
-        // Setting this will cause the crash!
         createRecordOperation.setErrorHandlerForLimitExceeded()
+        
         
         super.init(operations: [createRecordOperation])
         

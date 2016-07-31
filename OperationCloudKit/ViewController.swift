@@ -12,7 +12,6 @@ import Operations
 class BlockGenerator: GeneratorType {
     func next() -> BlockOperation? {
         let op = BlockOperation(block: { (continueWithError) in
-            print("LALA")
             continueWithError(error: nil)
         })
         
@@ -46,10 +45,12 @@ class ViewController: UIViewController {
         // CreateZoneOperation()
         // ==============================================
         
-        //let createZone = CreateZoneOperation()
-        //let createRecord = CreateRecordOperation()
-        //createRecord.addDependency(createZone)
-        //queue.addOperations([createZone, createRecord])
+        let createZone = CreateZoneOperation()
+        let createRecord = CreateRecordOperation()
+        let fetchChanges = FetchChangesOperation()
+        createRecord.addDependency(createZone)
+        fetchChanges.addDependency(createRecord)
+        queue.addOperations([createZone, createRecord, fetchChanges])
         
         // ==============================================
         // Uncomment this after first run
@@ -74,14 +75,26 @@ class ViewController: UIViewController {
         // NOTE: CloudKitOperations seems to fail
         // ======================================
         
-        let retry = RetryOperation<CreateRecordOperation>(
-            maxCount: 3,
-            strategy: .Random((0.1, 1.0)),
-            CloudGenerator()) { info, stuff -> (Delay?, CreateRecordOperation)? in
-                return (stuff.0, stuff.1)
-        }
+        //let retry = RetryOperation<CreateRecordOperation>(
+            //maxCount: 3,
+            //strategy: .Random((0.1, 1.0)),
+            //CloudGenerator()) { info, stuff -> (Delay?, CreateRecordOperation)? in
+                //return (stuff.0, stuff.1)
+        //}
         
-        queue.addOperation(retry)
+        //queue.addOperation(retry)
+        
+//        let fileManager = NSFileManager.defaultManager()
+//        
+//        let appSupportURL = try! fileManager.URLForDirectory(
+//            .ApplicationSupportDirectory,
+//            inDomain: .UserDomainMask,
+//            appropriateForURL: nil,
+//            create: true)
+//        
+//        print("************")
+//        print(appSupportURL)
+//        print("************")
     }
 
 }

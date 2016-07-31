@@ -1,5 +1,4 @@
-//
-//  AppDelegate.swift
+// //  AppDelegate.swift
 //  OperationCloudKit
 //
 //  Created by Leo Tumwattana on 31/5/2016.

@@ -1,24 +1,24 @@
 PODS:
-  - Operations/+CloudKit (2.10.1):
+  - Operations/+CloudKit (3.0.0):
     - Operations/Standard
-  - Operations/Standard (2.10.1)
+  - Operations/Standard (3.0.0)
 
 DEPENDENCIES:
-  - Operations/+CloudKit (from `https://github.com/leotumwattana/Operations.git`, commit `015dea91bde886907c14965581845958bcbcff23`)
+  - Operations/+CloudKit (from `https://github.com/danthorpe/Operations.git`, branch `master`)
 
 EXTERNAL SOURCES:
   Operations:
-    :commit: 015dea91bde886907c14965581845958bcbcff23
-    :git: https://github.com/leotumwattana/Operations.git
+    :branch: master
+    :git: https://github.com/danthorpe/Operations.git
 
 CHECKOUT OPTIONS:
   Operations:
-    :commit: 015dea91bde886907c14965581845958bcbcff23
-    :git: https://github.com/leotumwattana/Operations.git
+    :commit: 2b8a4ad3c77124c8d3900decb348b374ff94aba1
+    :git: https://github.com/danthorpe/Operations.git
 
 SPEC CHECKSUMS:
-  Operations: 78332636225044f6a1fffc8d5dfc5a744a5cb583
+  Operations: c05cc4b2ad060201ab98cbacd5217876658b5f2c
 
-PODFILE CHECKSUM: e83c93c2158e24516acc9cb78caae49ab41cb539
+PODFILE CHECKSUM: 4ab4ca8b7407f45e7d8d4c41899f0f1a6cb4012a
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.1
